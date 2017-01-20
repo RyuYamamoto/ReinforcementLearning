@@ -1,7 +1,7 @@
 # coding: utf-8
 
 PLAYER1 = 'Human'
-PLAYER2 = 'Human1'
+PLAYER2 = 'AI'
 DISP_EMPTY   = '-'
 DISP_MARU    = "○"
 DISP_BATU    = "×"
@@ -10,7 +10,7 @@ MARU    = 1
 BATU    = -1
 
 class TTT_board:
-    def __init__(self, player1='Human', player2='AI'):
+    def __init__(self, player1, player2):
         self.field          = []
         self.display_field  = []
         self.win            = None
@@ -18,7 +18,7 @@ class TTT_board:
         self.player1        = player1
         self.player2        = player2
 
-        print ('[' + self.player1 + ' vs ' + self.player2 + ']\n')
+        print ('[' + DISP_MARU + ' ]' + self.player1 + ' vs ' + '[' + DISP_BATU + ']' + self.player2 + ']\n')
 
         for i in range(9):self.field.append(EMPTY)
         for i in range(9):self.display_field.append(DISP_EMPTY)
@@ -46,7 +46,27 @@ class TTT_board:
             return self.player1
 
     def check_winner(self):
-        win_condition = []
+        maru_count = 0
+        batu_count = 0
+        win_condition = [[1,2,3], [4,5,6], [7,8,9], [1,4,5], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
+
+        for i in win_condition:
+            for j in i:
+                if self.field[j-1] == MARU:
+                    maru_count = maru_count + 1
+                elif self.field[j-1] == BATU:
+                    batu_count = batu_count + 1
+            if maru_count == 3:
+                self.win    = self.player1
+                self.lose   = self.player2
+                return True
+            elif batu_count == 3:
+                self.win    = self.player2
+                self.lose   = self.player1
+                return True
+            maru_count = batu_count = 0
+
+        return False
 
 class TTT_Agent(TTT_board):
     def __init__(self, player1, player2):
@@ -71,9 +91,9 @@ class TTT_Facilitator(TTT_Agent):
                 else:
                     print "Invalid input."
             self.turn_player = self.set_place(self.place, self.turn_player);
+            self.print_field()
             if self.check_winner() is True:
                 break
-            self.print_field()
             self.count = self.count + 1
 
         if self.win == self.player1:
