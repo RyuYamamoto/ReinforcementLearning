@@ -1,5 +1,10 @@
+# coding: utf-8
+
 PLAYER1 = 'Human'
 PLAYER2 = 'Human'
+EMPTY   = '-'
+MARU    = "○"
+BATU    = "×"
 
 class TTT_board:
     def __init__(self, player1='Human', player2='AI'):
@@ -11,7 +16,7 @@ class TTT_board:
 
         print ('[' + self.player1 + ' vs ' + self.player2 + ']\n')
 
-        for i in range(9):self.field.append('-')
+        for i in range(9):self.field.append(EMPTY)
 
     def print_field(self):
         row = ' {} | {} | {} '
