@@ -45,6 +45,9 @@ class TTT_board:
             self.display_field[place-1]   = DISP_BATU
             return self.player1
 
+    def check_winner(self):
+        win_condition = []
+
 class TTT_Agent(TTT_board):
     def __init__(self, player1, player2):
         TTT_board.__init__(self, player1, player2)
@@ -57,7 +60,7 @@ class TTT_Facilitator(TTT_Agent):
         self.count          = 0
     
     def game_progress(self):
-        while self.win == None or 9 <= self.count:
+        while self.count < 9:
             while 1:
                 self.place = int(input("["+self.turn_player+"]: place > "))
                 if self.place<10 and 0<self.place:
@@ -68,10 +71,16 @@ class TTT_Facilitator(TTT_Agent):
                 else:
                     print "Invalid input."
             self.turn_player = self.set_place(self.place, self.turn_player);
+            if self.check_winner() is True:
+                break
             self.print_field()
             self.count = self.count + 1
 
-        if self.win == None and self.lose == None:
+        if self.win == self.player1:
+            print self.player1 + " Win."
+        elif self.win == self.player2:
+            print self.player2 + " Win."
+        elif self.win == None and self.lose == None:
             print "Draw."
 
 if __name__ == '__main__':
