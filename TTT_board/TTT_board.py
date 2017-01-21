@@ -50,7 +50,7 @@ class TTT_board:
     def check_winner(self):
         maru_count = 0
         batu_count = 0
-        win_condition = [[1,2,3], [4,5,6], [7,8,9], [1,4,5], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
+        win_condition = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
 
         for i in win_condition:
             for j in i:
