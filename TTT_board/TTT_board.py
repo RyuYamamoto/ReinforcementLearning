@@ -1,4 +1,6 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
+
+import random
 
 PLAYER1 = 'Human'
 PLAYER2 = 'AI'
@@ -72,6 +74,9 @@ class TTT_Agent(TTT_board):
     def __init__(self, player1, player2):
         TTT_board.__init__(self, player1, player2)
 
+    def random_player_acition(self, turn_player): 
+        return random.randint(1,9)
+
 class TTT_Facilitator(TTT_Agent):
     def __init__(self, turn_player, player1, player2):
         TTT_Agent.__init__(self, player1, player2)
@@ -82,20 +87,32 @@ class TTT_Facilitator(TTT_Agent):
     def game_progress(self):
         self.print_field()
         while self.count < 9:
-            while 1:
-                self.place = int(input("["+self.turn_player+"]: place > "))
-                if self.place<10 and 0<self.place:
+            if self.turn_player == "Human":
+                while 1:
+                    self.place = int(input("["+self.turn_player+"]: place > "))
+                    if self.place<10 and 0<self.place:
+                        if self.check_field(self.place) is True:
+                            break
+                        else:
+                            print "Already exist."
+                    else:
+                        print "Invalid input."
+                self.turn_player = self.set_place(self.place, self.turn_player)
+                self.print_field()
+                if self.check_winner() is True:
+                    break
+                self.count = self.count + 1
+            elif self.turn_player == "AI":
+                while 1:
+                    print "["+self.turn_player+"]"
+                    self.place = self.random_player_acition(self.turn_player)
                     if self.check_field(self.place) is True:
                         break
-                    else:
-                        print "Already exist."
-                else:
-                    print "Invalid input."
-            self.turn_player = self.set_place(self.place, self.turn_player);
-            self.print_field()
-            if self.check_winner() is True:
-                break
-            self.count = self.count + 1
+                self.turn_player = self.set_place(self.place, self.turn_player)
+                self.print_field()
+                if self.check_winner() is True:
+                    break
+                self.count = self.count + 1
 
         if self.win == self.player1:
             print self.player1 + " Win."
