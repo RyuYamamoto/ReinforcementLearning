@@ -80,6 +80,7 @@ class TTT_Facilitator(TTT_Agent):
         self.count          = 0
     
     def game_progress(self):
+        self.print_field()
         while self.count < 9:
             while 1:
                 self.place = int(input("["+self.turn_player+"]: place > "))
