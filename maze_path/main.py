@@ -34,6 +34,9 @@ if __name__ == "__main__":
                 if event.type==QUIT:
                     pygame.quit()
                     sys.exit()
+                elif event.type == MOUSEBUTTONDOWN and event.button == 1:
+                    x, y = event.pos
+                    print x, y
         if np.array_equal(agentQL.state, np.array(map_reward.shape)-1):
             agentQL.goal_count = agentQL.goal_count + 1
             print "Goal:", agentQL.goal_count

@@ -43,18 +43,17 @@ class AgentQLearning:
         y, x = self.state
         current_acton_list = copy.deepcopy(self.action_list[y,x])
         if np.random.rand() > self.epsilon:
-                max_q = self.q[current_acton_list,y,x].max()
+            max_q = self.q[current_acton_list,y,x].max()
             action_list_index = list(np.argwhere(self.q[current_acton_list,y,x] == max_q))
             random.shuffle(action_list_index)
-                action = current_acton_list[action_list_index[0]]
+            action = current_acton_list[action_list_index[0]]
         else:
             random.shuffle(current_acton_list)
-                action = current_acton_list[0]
+            action = current_acton_list[0]
             move = self.move_list.get(action)
-
-	self.update_q(action, move)
-        self.q_value_list.append(self.q_max_value(move))
-        self.state += move 
+            self.update_q(action, move)
+            self.q_value_list.append(self.q_max_value(move))
+            self.state += move 
 
     def update_q(self, action_list_index, move):
         y, x = self.state
