@@ -42,6 +42,7 @@ class AgentQLearning:
     def learn(self):
         y, x = self.state
         current_acton_list = copy.deepcopy(self.action_list[y,x])
+        current_acton_list = np.array(current_acton_list)
         if np.random.rand() > self.epsilon:
             max_q = self.q[current_acton_list,y,x].max()
             action_list_index = list(np.argwhere(self.q[current_acton_list,y,x] == max_q))
