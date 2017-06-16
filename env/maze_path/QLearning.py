@@ -20,6 +20,7 @@ class AgentQLearning:
         self.action_list    = self.generate_action_list()
         self.move_list      = {0:np.array([0,-1]), 1:np.array([1,0]), 2:np.array([0,1]), 3:np.array([-1,0])}
         self.q              = np.zeros((4, ) + self.map_filed.shape)
+        print self.q.shape
         self.goal_state     = np.array(self.map_filed.shape)-1
 
     def generate_action_list(self):

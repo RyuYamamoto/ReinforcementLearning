@@ -15,7 +15,8 @@ if __name__ == "__main__":
     argc = len(args)
     gui_flag = True
 
-    map_reward  = np.loadtxt('data/map.csv', delimiter=',') 
+    map_reward  = np.loadtxt('data/map.csv', delimiter=',')
+    print map_reward.shape 
     agentQL     = AgentQLearning(map_reward,0.1,0.2,0.9)
     
     if 1 < argc:
