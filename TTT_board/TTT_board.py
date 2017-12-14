@@ -103,8 +103,8 @@ class TTT_Facilitator(TTT_Agent):
                     break
                 self.count = self.count + 1
             elif self.turn_player == "AI":
+                print "["+self.turn_player+"]"
                 while 1:
-                    print "["+self.turn_player+"]"
                     self.place = self.random_player_acition(self.turn_player)
                     if self.check_field(self.place) is True:
                         break
