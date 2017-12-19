@@ -21,7 +21,7 @@ class BoardDisplay:
     def draw(self, mouse):
         for j in range(3):
 	    for i in range(3):
-                pygame.draw.rect(self.screen, (0,200,0), Rect(i*MASU,j*MASU,MASU,MASU))
+                pygame.draw.rect(self.screen, (250,250,250), Rect(i*MASU,j*MASU,MASU,MASU))
 		pygame.draw.rect(self.screen, (50,50,50), Rect(i*MASU,j*MASU,MASU,MASU),1)
         #return self.check_place(mouse)
 				
