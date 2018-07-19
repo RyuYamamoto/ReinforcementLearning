@@ -94,17 +94,17 @@ class TTT_Facilitator(TTT_Agent):
                         if self.check_field(self.place) is True:
                             break
                         else:
-                            print "Already exist."
+                            print ("Already exist.")
                     else:
-                        print "Invalid input."
+                        print ("Invalid input.")
                 self.turn_player = self.set_place(self.place, self.turn_player)
                 self.print_field()
                 if self.check_winner() is True:
                     break
                 self.count = self.count + 1
             elif self.turn_player == "AI":
-                print "["+self.turn_player+"]"
                 while 1:
+                    print ("["+self.turn_player+"]")
                     self.place = self.random_player_acition(self.turn_player)
                     if self.check_field(self.place) is True:
                         break
@@ -115,11 +115,11 @@ class TTT_Facilitator(TTT_Agent):
                 self.count = self.count + 1
 
         if self.win == self.player1:
-            print self.player1 + " Win."
+            print (self.player1 + " Win.")
         elif self.win == self.player2:
-            print self.player2 + " Win."
+            print (self.player2 + " Win.")
         elif self.win == None and self.lose == None:
-            print "Draw."
+            print ("Draw.")
 
 if __name__ == '__main__':
     ttt = TTT_Facilitator(PLAYER1, PLAYER1, PLAYER2)
