@@ -50,22 +50,3 @@ class BoardDisplay:
 	    elif MASU*2<x and x<MASU*3:
 		place = 9
 	return place
-'''
-  def show_policy(self, q_table):
-			for x in range(self.row):
-        for y in range(self.colmun):
-          action = np.array(q_table[:,x,y])
-          max_q_action = action.argmax()
-          direction = ""
-          if max_q_action == 0:
-            direction = u"←"
-          elif max_q_action == 1:
-            direction = u"↓"
-          elif max_q_action == 2:
-            direction = u"→"
-          elif max_q_action == 3:
-            direction = u"↑"
-					color = (q_table[:,x,y].max()/3.0)*255.0
-          pygame.draw.rect(self.screen, (255,255-color,255-color), Rect(y*MASU,x*MASU, MASU,MASU))
-          self.screen.blit(self.font.render(direction, True, (125,125,125)), (y*MASU+MASU/3,x*MASU+MASU/4))
-'''
